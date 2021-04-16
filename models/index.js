@@ -12,18 +12,18 @@ List.belongsTo(User, {
   foreignKey: "user_id",
 });
 
-List.hasMany(Movie, {
+List.belongsToMany(Movie, {
   through: {
     model: Movielist,
-    unique: false,
+    foreignKey: "movie_id"
   },
 });
 
-Movie.hasMany(List {
+Movie.belongsToMany(List, {
     through: {
         model: Movielist,
-        unique: false,
+        foreignKey: "list_id"
       },
-})
+});
 
 module.exports = { User, List, Movie, Movielist };
