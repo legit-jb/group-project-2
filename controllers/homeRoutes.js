@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Movie, Movielist } = require("../models");
 
+
 // GET all movies for homepage
 router.get("/", async (req, res) => {
   try {
