@@ -1,10 +1,11 @@
-const searchBtn = document.getElementById("search-btn");
+const searchBtn = document.getElementById('search-btn');
+const searchResults = document.getElementById('search-results');
+const apiKey = "c7fe7839";
+const apiKey2 = "4c11a62";
 
 // searchMovie function searches OMDB.com api to get the movie object and returns it
-const searchMovie = async (searchInput) => {
-    const apiKey = "c7fe7839";
-    const apiKey2 = "4c11a62";
-    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${searchInput}`);
+const getMovie = async (id) => {
+    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${id}`);
     const movie = await response.json();
     const { Ratings } = movie;
 
@@ -26,13 +27,31 @@ const searchMovie = async (searchInput) => {
     movie.imdbRating = Ratings[0].Value;
     movie.RottenTomRating = Ratings[1].Value;
     movie.MetacriticRating = Ratings[2].Value;
+}
 
-    console.log (movie);
+const searchMovie = async (search) => {
+    // const searchList = document.getElementById("search-list")
+    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${search}`);
+    const {Search} = await response.json();
+    // creates div for list of results
+    const listContainer = document.createElement('UL');
+    searchResults.appendChild(listContainer);
+
+    console.log (Search);
+    Search.forEach(flick => {
+        const {Title, imdbID} = flick;
+        const liEl = document.createElement('li');
+        liEl.innerHTML = Title;
+        liEl.setAttribute('id', imdbID)
+        listContainer.appendChild(liEl);
+        console.log (Title + imdbID);
+    });
+    
 }
 
 movieClickHandler = (event) => {
     event.preventDefault();
-    const movieSearch = document.getElementById("movie-search");
+    const movieSearch = document.getElementById('movie-search');
 
     if (movieSearch.value !== "") {
         const movie = movieSearch.value;
