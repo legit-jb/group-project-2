@@ -5,10 +5,11 @@ const apiKey2 = "4c11a62";
 
 // searchMovie function searches OMDB.com api with the imbd id to get the movie object and returns it
 const getMovie = async (id) => {
-    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}&plot=full`);
-    console.log ("imdb = " +id);
+    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}`);
+
     const movie = await response.json();
-    console.log (movie);
+    const { Ratings } = movie;
+
     // delete unused properties
     delete movie.BoxOffice;
     delete movie.Country;
@@ -22,16 +23,13 @@ const getMovie = async (id) => {
     delete movie.Year;
     delete movie.imdbRating;
     delete movie.imdbVotes;
-    
-    const { Ratings } = movie;
-    console.log (Ratings);
-    
-    // delete movie.Ratings;
+    delete movie.Ratings;
     // add the ratings back into the object but as separate properties
     movie.imdbRating = Ratings[0].Value;
     movie.RottenTomRating = Ratings[1].Value;
     movie.MetacriticRating = Ratings[2].Value;
-    // console.log (movie);
+
+    console.log(movie);
 };
 // end getMovie function
 
@@ -42,6 +40,7 @@ const searchMovie = async (search) => {
     const {Search} = await response.json();
     // creates div for list of results
     const listContainer = document.createElement('UL');
+    listContainer.id = 'list-container';
     searchResults.appendChild(listContainer);
 
     // displays results by title. The imdb id is the id for the element
@@ -74,6 +73,8 @@ movieClickHandler = (event) => {
 searchResults.addEventListener("click", (event) => {
     if (event.target.classList.contains("clickable")) {
         getMovie(event.target.id);
+        const listContainer = document.getElementById('list-container');
+        listContainer.remove();
     }
 
 });
