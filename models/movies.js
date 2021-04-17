@@ -31,6 +31,7 @@ Movie.init(
     imdbID: {
       type: DataTypes.STRING,
       field: 'imdbID',
+      primaryKey: true,
       allowNull: false
     },
     imdbRating: {

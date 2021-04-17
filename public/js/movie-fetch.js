@@ -1,4 +1,5 @@
-const searchBtn = document.getElementById("search-btn");
+const searchBtn = document.getElementById('search-btn');
+const searchResults = document.getElementById('search-results');
 const apiKey = "c7fe7839";
 const apiKey2 = "4c11a62";
 
@@ -32,9 +33,17 @@ const searchMovie = async (search) => {
     // const searchList = document.getElementById("search-list")
     const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${search}`);
     const {Search} = await response.json();
+    // creates div for list of results
+    const listContainer = document.createElement('UL');
+    searchResults.appendChild(listContainer);
+
     console.log (Search);
     Search.forEach(flick => {
         const {Title, imdbID} = flick;
+        const liEl = document.createElement('li');
+        liEl.innerHTML = Title;
+        liEl.setAttribute('id', imdbID)
+        listContainer.appendChild(liEl);
         console.log (Title + imdbID);
     });
     
@@ -42,7 +51,7 @@ const searchMovie = async (search) => {
 
 movieClickHandler = (event) => {
     event.preventDefault();
-    const movieSearch = document.getElementById("movie-search");
+    const movieSearch = document.getElementById('movie-search');
 
     if (movieSearch.value !== "") {
         const movie = movieSearch.value;
