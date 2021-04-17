@@ -28,12 +28,19 @@ Movie.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+    imdbID: {
+      type: DataTypes.STRING,
+      field: 'imdbID',
+      allowNull: false
+    },
     imdbRating: {
       type: DataTypes.STRING,
+      field: 'imdbRating',
       allowNull: true
     },
     MetacriticRating: {
       type: DataTypes.STRING,
+      field: 'MetacriticRating',
       allowNull: false
     },
     Plot: {
@@ -54,6 +61,7 @@ Movie.init(
     },
     RottenTomRating: {
       type: DataTypes.STRING,
+      field: 'RottenTomRating',
       allowNull: true
     },
     Runtime: {
@@ -67,15 +75,6 @@ Movie.init(
     Type: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    imdbId: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    haveWatched: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
     }
   },
   {
