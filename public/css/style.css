@@ -6,6 +6,11 @@
     --light: #F2E5D5;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--dark);
 }
@@ -17,14 +22,35 @@ header {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+    color:var(--bright-gold);
+}
+
+a:hover {
+    color:var(--gray);
+}
+
+h1 {
+    color: var(--bright-gold);
+}
+
+h2 {
+    color:var(--dark-gold);
+}
+
+h3 {
+    color: var(--bright-gold);
+}
+
 nav {
     background-color: var(--dark-gold);
-    border: solid 3px var(--bright-gold)
+    border: solid 3px var(--bright-gold);
+    height: 76px;
 }
 
 nav a{
     color:var(--dark);
-    text-decoration: none;
     padding: 100px;
 }
 
@@ -42,7 +68,74 @@ nav a:hover{
     text-align: center;
 }
 
+.login-card h2 {
+    color:var(--dark);
+}
+
+.card {
+    margin: 0 0 20px 0;
+    max-width: 100%;
+    padding: 5px;
+    border: 1px solid var(--bright-gold);
+    background-color: var(--dark);
+    color: var(--light);
+}
+
 .card-head {
     background-color:var(--dark-gold);
     color: var(--dark);
+    text-align: center;
+}
+
+.jumbotron {
+    background-image: url("../images/timothy-eberly-dTLlhgeEJWg-unsplash.jpg");
+    background-size: cover;
+    height: 700px;
+    color: var(--light);
+  }
+
+.jumbotron button, .search-btn {
+    background-color:var(--light);
+}
+
+.jumbotron h2 {
+    color:var(--dark-gold);
+}
+
+.slogan-bar {
+    background-color: var(--dark);
+}
+
+aside {
+    background-color: var(--gray);
+    color: var(--light);
+    text-align: left;
+}
+
+aside h2 {
+    border-bottom: 1px solid var(--dark);
+}
+
+aside ul{
+    list-style-type: none;
+}
+
+aside a {
+    color:var(--light);
+}
+
+aside a:hover {
+    color:var(--bright-gold);
+}
+
+.sign-link {
+    color:var(--dark-gold);
+}
+
+.sign-link:hover {
+    color:var(--gray);
+}
+
+.list-card {
+    max-width: 35%;
 }
