@@ -1,0 +1,48 @@
+:root {
+    --dark: #222126;
+    --gray: #59554C;
+    --bright-gold: #F2A649;
+    --dark-gold: #BF8C4E;
+    --light: #F2E5D5;
+}
+
+body {
+    background-color: var(--dark);
+}
+
+header {
+    background-color: var(--dark);
+    color: var(--bright-gold);
+    margin: 20px;
+    text-align: center;
+}
+
+nav {
+    background-color: var(--dark-gold);
+    border: solid 3px var(--bright-gold)
+}
+
+nav a{
+    color:var(--dark);
+    text-decoration: none;
+    padding: 100px;
+}
+
+nav a:hover{
+    color:var(--light);
+}
+
+.login-card {
+    margin: 0 0 20px 0;
+    max-width: 35%;
+    padding: 5px;
+    border: 3px solid var(--bright-gold);
+    background-color: var(--light);
+    color: var(--dark);
+    text-align: center;
+}
+
+.card-head {
+    background-color:var(--dark-gold);
+    color: var(--dark);
+}

@@ -1,10 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// create our Location model
 class Movielist extends Model {}
 
-// create fields/columns for Location model
 Movielist.init(
   {
     id: {
@@ -37,7 +35,7 @@ Movielist.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'list'
+    modelName: 'movielist'
   }
 );
 

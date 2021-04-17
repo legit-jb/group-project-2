@@ -1,10 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// create our Location model
 class List extends Model {}
 
-// create fields/columns for Location model
 List.init(
   {
     id: {
