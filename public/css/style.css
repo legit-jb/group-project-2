@@ -148,3 +148,7 @@ aside a:hover {
 .movie-card-btn {
   max-width: 10%;
 }
+
+#movie-id {
+  color:var(--dark);
+}
