@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { List, Movie, Movielist, User } = require("../../models");
 const { route } = require("./user-routes");
+const withAuth = require("../utils/auth");
 
 // get all movies, include associated lists
 router.get("/", async (req, res) => {
