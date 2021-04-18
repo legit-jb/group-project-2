@@ -1,50 +1,66 @@
 <div class="container-fluid">
-        <div class="row">
-          <aside class="col-2 mx-5">
-            <h2 class="p-2">Menu</h2>
-            <ul>
-              <li class="py-2"><a href="/profile">My Profile</a></li>
-              <li class="py-2"><a href="#">My Lists</a></li>
-              <li class="py-2"><a href="#">Create New List</a></li>
-              <li class="py-2">
-                <a
-                  data-bs-toggle="collapse"
-                  href="#collapseList"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="collapse"
-                  >Inspiration Lists</a
-                >
-              </li>
-              <div class="collapse" id="collapseList">
-                <ul>
-                  <li class="py-2">IMDB Top 100</li>
-                  <li class="py-2">AFI Top 100</li>
-                  <li class="py-2">etc.</li>
-                </ul>
-              </div>
-            </ul>
-          </aside>
-          <div class="col-8">
-            <div class="row">
-              <div class="col">
-                <h2>Hello, {{username}}!</h2>
-              </div>
-              <div class="col">
-                  <input type="text" placeholder="Search for Movies" id="movie-search" size="35">
-                  <button class="btn btn-outline-dark m-3 search-btn" id="search-btn" type="submit">
-                    Search
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class=row>
-            <div class="card my-4 p-2" id="search-results">
-              <p class="p-1">Use the search bar above to look for movies, or the menu to the left to navigate to lists.</p>
-              <p class="p-1">If you're looking for inspiration, you can check out some lists from respected sources like <a href="https://www.afi.com/afis-100-years-100-movies-10th-anniversary-edition/">the AFI Top 100</a>.</p>
-            </div>
-          </div>
-          </div>
+  <div class="row">
+    <aside class="col-2 mx-5">
+      <h2 class="p-2">Menu</h2>
+      <ul>
+        <li class="py-2"><a href="/profile">My Profile</a></li>
+        <li class="py-2"><a href="#" id="my-lists">My Lists</a></li>
+        <li class="py-2"><a href="#" id="new-list">Create New List</a></li>
+        <li class="py-2">
+          <a data-bs-toggle="collapse" href="#collapseList" role="button" aria-controls="collapse">Inspiration Lists</a>
+        </li>
+        <div class="collapse" id="collapseList">
+          <ul>
+            <li class="py-2"><a href="#" id="imdb-list">IMDB Top 100</a></li>
+            <li class="py-2"><a href="#" id="afi-list"></a>AFI Top 100</li>
+            <li class="py-2">etc.</li>
+          </ul>
+        </div>
+      </ul>
+    </aside>
+    <div class="col-8">
+      <div class="row">
+        <div class="col">
+          <h2>Hello, {{user.username}}!</h2>
+        </div>
+        <div class="col">
+          <form>
+          <input type="text" placeholder="Search for Movies" id="movie-search" size="35">
+          <button class="btn btn-outline-dark m-3 search-btn" id="search-btn" type="submit">
+            Search
+          </button>
+          </form>
         </div>
       </div>
-      <script src="../public/js/movie-fetch.js"></script>
+      <div class=row>
+        <div class="card my-4 p-2" id="search-results">
+          <p class="p-1">Use the search bar above to look for movies, or the menu to the left to navigate to lists.</p>
+          <p class="p-1">If you're looking for inspiration, you can check out some lists from respected sources like <a
+              href="https://www.afi.com/afis-100-years-100-movies-10th-anniversary-edition/">the AFI Top 100</a>.</p>
+        </div>
+      </div>
+      <div class="row" id="userlists">
+        {{#each user.lists}}
+        <div class="col-4">{{>list}}</div>
+        {{/each}}
+      </div>
+      <div class="row" id="createlist">
+        {{>newlistform}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+        {{>movie}}
+      </div>
+    </div>
+  </div>
+</div>
+<script src="./js/movie-fetch.js"></script>
+<script src="./js/loadpartials.js"></script>

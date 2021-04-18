@@ -4,7 +4,7 @@
     </div>
     <ol>
     {{#each list.movies as |movie|}}
-    <li><a href="/movie/:id">{{Title}}</a></li>
+    <li><a data-bs-toggle="modal" data-bs-target="#movieModal">{{Title}}</a></li>
     {{/each}}
     </ol>
 </div>
