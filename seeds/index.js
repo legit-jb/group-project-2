@@ -2,6 +2,7 @@ const seedUsers = require('./user-seeds');
 const seedLists = require('./list-seeds');
 const seedMovies = require('./movie-seeds');
 const seedMovieLists = require('./movie-list-seeds');
+const fetchMovie = require('./node-fetch')
 
 const sequelize = require('../config/connection');
 
@@ -19,6 +20,9 @@ const seedAll = async () => {
 
   await seedMovieLists();
   console.log('\n----- MOVIELISTS SEEDED -----\n');
+
+  // await fetchMovie();
+  // console.log('\n----- MOVIES ADDED -----\n');
 
   process.exit(0);
 };

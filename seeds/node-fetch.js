@@ -15,6 +15,7 @@ const fetchMovie = async (searchInput) => {
   const movie = await res.json();
   // console.log (movie);
   const { Ratings } = movie;
+  
   // delete unused properties
   delete movie.BoxOffice;
   delete movie.Country;
@@ -33,6 +34,7 @@ const fetchMovie = async (searchInput) => {
   movie.imdbRating = Ratings[0].Value;
   movie.RottenTomRating = Ratings[1].Value;
   movie.MetacriticRating = Ratings[2].Value;
+=======
   console.log(movie);
   // now add movie to database
   const url = 'http://817dc17e6c61.ngrok.io/api/movies';

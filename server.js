@@ -39,18 +39,3 @@ app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
-}); 
-
-// const fetch = require('node-fetch');
-
-// const url = 'http://817dc17e6c61.ngrok.io/api/lists';
-
-// const body = { list_name: "new list", user_id: 2, movieIds: [1,2] };
- 
-// fetch(url, {
-//         method: 'post',
-//         body:    JSON.stringify(body),
-//         headers: { 'Content-Type': 'application/json' },
-//     })
-//     .then(res => res.json())
-//     .then(json => console.log(json));
