@@ -13,8 +13,12 @@
         <p>Ratings:</p>
         <p>IMBD: {{imdbRating}} | Metacritic: {{MetacriticRating}} | Rotten Tomatoes: {{RottenTomRating}}</p>
     </div>
-    <div id="user-thoughts">
-        <p><h2><i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-down"></i></h2></p>
-        {{>forum}}
+    
+        <div id="user-thoughts">
+            <p>
+            <h2><i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-down"></i></h2>
+            </p>
+            {{>forum}}
+        </div>
     </div>
-</div>
+<script src="../public/js/updownvote.js"></script>
