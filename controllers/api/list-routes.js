@@ -3,7 +3,7 @@ const { List, Movie, Movielist, } = require('../../models');
 const withAuth = require("../../utils/auth");
 
 // get all lists, include associated movies
-router.get('/list', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
       const listData = await List.findAll({
         include: { model: Movie, through: Movielist}
@@ -47,7 +47,7 @@ router.get('/users/:user_id', async (req, res) => {
 });
 
 // Post a new list
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
   List.create(req.body)
     .then((list) => {
       if (req.body.movieIds.length) {
@@ -55,7 +55,6 @@ router.post('/', withAuth, (req, res) => {
           return {
             list_id: list.id,
             movie_id,
-            user_id: req.session.user_id,
           };
         });
         return Movielist.bulkCreate(listMovieIdArr);
