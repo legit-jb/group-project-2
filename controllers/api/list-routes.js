@@ -55,6 +55,7 @@ router.post('/', (req, res) => {
           return {
             list_id: list.id,
             movie_id,
+
           };
         });
         return Movielist.bulkCreate(listMovieIdArr);
@@ -70,20 +71,44 @@ router.post('/', (req, res) => {
 
 // Update existing list by id
 router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
-  List.update(
-    {
-      list_name: req.body.list_name
+  // update product data
+  List.update(req.body, {
+    where: {
+      id: req.params.id,
     },
-    {
-      where: {
-        id: req.params.id
-      },
+  })
+    .then((list) => {
+      // find all associated tags from ProductTag
+      return Movielist.findAll({ where: { list_id: req.params.id } });
     })
-    .then((updateList) => {
-      res.json({message:"List Updated!"});
+    .then((movieList) => {
+      // get list of current tag_ids
+      const movielistIds = movieList.map(({ movie_id }) => movie_id);
+      // create filtered list of new tag_ids
+      const newMovieList = req.body.movieIds
+        .filter((movie_id) => !movielistIds.includes(movie_id))
+        .map((movie_id) => {
+          return {
+            list_id: req.params.id,
+            movie_id,
+          };
+        });
+      // figure out which ones to remove
+      const moviesToRemove = movieList
+        .filter(({ movie_id }) => !req.body.movieIds.includes(movie_id))
+        .map(({ id }) => id);
+
+      // run both actions
+      return Promise.all([
+        Movielist.destroy({ where: { id: moviesToRemove } }),
+        Movielist.bulkCreate(newMovieList),
+      ]);
     })
-    .catch((err) => res.json(err));
+    .then((updatedMovieList) => res.json(updatedMovieList))
+    .catch((err) => {
+      // console.log(err);
+      res.status(400).json(err);
+    });
 });
 
 // Delete a list by id
