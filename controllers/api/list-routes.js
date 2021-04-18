@@ -46,7 +46,7 @@ router.get('/users/:user_id', async (req, res) => {
 });
 
 // Post a new list
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   List.create(req.body)
     .then((list) => {
       if (req.body.movieIds.length) {
@@ -54,6 +54,7 @@ router.post('/', (req, res) => {
           return {
             list_id: list.id,
             movie_id,
+            user_id: req.session.user_id,
           };
         });
         return Movielist.bulkCreate(listMovieIdArr);
