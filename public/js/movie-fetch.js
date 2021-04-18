@@ -5,8 +5,8 @@ const apiKey2 = "4c11a62";
 
 // searchMovie function searches OMDB.com api with the imbd id to get the movie object and returns it
 const getMovie = async (id) => {
-    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}`);
 
+    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}`);
     const movie = await response.json();
     const { Ratings } = movie;
 
@@ -30,6 +30,13 @@ const getMovie = async (id) => {
     movie.MetacriticRating = Ratings[2].Value;
 
     console.log(movie);
+    // Now add the object to the db
+    const options = {
+        method: 'POST',
+        body: movie,
+    }
+    await fetch('api/movies', options);
+    
 };
 // end getMovie function
 
@@ -37,7 +44,7 @@ const getMovie = async (id) => {
 const searchMovie = async (search) => {
     // const searchList = document.getElementById("search-list")
     const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${search}`);
-    const {Search} = await response.json();
+    const { Search } = await response.json();
     // creates div for list of results
     const listContainer = document.createElement('UL');
     listContainer.id = 'list-container';
@@ -45,7 +52,7 @@ const searchMovie = async (search) => {
 
     // displays results by title. The imdb id is the id for the element
     Search.forEach(flick => {
-        const {Title, imdbID} = flick;
+        const { Title, imdbID } = flick;
         const liEl = document.createElement('li');
         liEl.classList.add('clickable');
         liEl.innerHTML = Title;
@@ -70,14 +77,19 @@ movieClickHandler = (event) => {
 // end of movieClickHandler 
 
 // waits for a click of the search results and sends the imdb id to the getMovie function
-searchResults.addEventListener("click", (event) => {
-    if (event.target.classList.contains("clickable")) {
-        getMovie(event.target.id);
-        const listContainer = document.getElementById('list-container');
-        listContainer.remove();
-    }
+if (searchResults !== null) {
+    searchResults.addEventListener("click", (event) => {
+        if (event.target.classList.contains("clickable")) {
+            getMovie(event.target.id);
+            const listContainer = document.getElementById('list-container');
+            listContainer.remove();
+        }
 
-});
+    });
+}
 // end of searchResults listener
 
-searchBtn.addEventListener('click', (movieClickHandler));
+if (searchBtn !== null) {
+    searchBtn.addEventListener('click', (movieClickHandler));
+}
+// end of searchBtn listener
