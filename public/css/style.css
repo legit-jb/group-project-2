@@ -58,6 +58,10 @@ nav a:hover {
   color: var(--light);
 }
 
+.btn {
+  background-color: var(--bright-gold);
+}
+
 .login-card {
   margin: 0 0 20px 0;
   max-width: 35%;
@@ -94,10 +98,6 @@ nav a:hover {
   color: var(--light);
 }
 
-.btn {
-  background-color: var(--bright-gold);
-}
-
 .jumbotron h2 {
   color: var(--dark-gold);
 }
@@ -107,8 +107,8 @@ nav a:hover {
   -webkit-text-stroke-color: var(--dark);
 }
 
-.slogan-bar {
-  background-color: var(--dark);
+.btn-container {
+  text-align: center;
 }
 
 aside {
