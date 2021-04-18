@@ -22,7 +22,7 @@ const movieData = [
     Actors: "Bill Murray, Dan Aykroyd, Sigourney Weaver, Harold Ramis",
     Awards: "Nominated for 2 Oscars. Another 6 wins & 6 nominations.",
     Director: "Ivan Reitman",
-    Genre: "Awesome",
+    Genre: "Action, Comedy, Fantasy, Sci-Fi",
     imdbID: "tt0087332",
     imbdRating: "7.8/10",
     MetacriticRating: "71/100",
