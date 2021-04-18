@@ -1,24 +1,39 @@
 <div class="card my-4 p-2">
-    <div class="card-head">
-        {{Title}}
-    </div>
-    <img src={{Poster}} alt="{{Title}} poster" class="float-left">
-    <div class="movie-blurb">
-        <p>{{Rated}}</p>
-        <p>{{Genre}}</p>
-        <p>Director: {{Director}}</p>
-        <p>Actors: {{Actors}}</p>
-        <p>Synopsis: {{Plot}}</p>
-        <p>Released: {{Released}} | Runtime: {{Runtime}}</p>
-        <p>Ratings:</p>
-        <p>IMBD: {{imdbRating}} | Metacritic: {{MetacriticRating}} | Rotten Tomatoes: {{RottenTomRating}}</p>
-    </div>
-    
-        <div id="user-thoughts">
-            <p>
-            <h2><i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-down"></i></h2>
-            </p>
-            {{>forum}}
+    <div class="add-info">
+        <div class="card-head">
+            {{Title}}
+        </div>
+        <img src={{Poster}} alt="{{Title}} poster" class="float-left">
+        <p id="movie-id" class="float-left">{{id}}</p>
+        <div class="movie-blurb">
+            <p>{{Rated}}</p>
+            <p>{{Genre}}</p>
+            <p>Director: {{Director}}</p>
+            <p>Actors: {{Actors}}</p>
+            <p>Synopsis: {{Plot}}</p>
+            <p>Released: {{Released}} | Runtime: {{Runtime}}</p>
+            <p>Ratings:</p>
+            <p>IMBD: {{imdbRating}} | Metacritic: {{MetacriticRating}} | Rotten Tomatoes: {{RottenTomRating}}</p>
+        </div>
+        <button class="btn btn-outline-dark m-3 movie-card-btn" data-bs-toggle="collapse" href="#collapseList"
+            role="button" aria-expanded="false" aria-controls="collapse"><i class="far fa-plus-square"></i> Add to
+            List</button>
+        </li>
+        <div class="collapse" id="collapseList">
+            <ul>
+                {{#each user.lists as |list|}}
+                <li class="list-title"><button type="submit" name="{{list_name}}"><i class="fas fa-plus"></i></button>
+                    {{list_name}}</li>
+                {{/each}}
+            </ul>
         </div>
     </div>
-<script src="../public/js/updownvote.js"></script>
+    <div id="user-thoughts">
+        <p>
+        <h2><i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-down"></i></h2>
+        </p>
+        {{>forum}}
+    </div>
+</div>
+<script src="./js/addtolist.js"></script>
+<script src="./js/updownvote.js"></script>
