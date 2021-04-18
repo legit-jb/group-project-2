@@ -18,7 +18,7 @@ router.get('/signup', function (req, res) {
 })
 
 
-
+// If a logged in session doesn't exists, render the login page
 router.get('/profile', withAuth, async (req, res) => {
   try {
     const userData = await User.findAll({
@@ -38,14 +38,14 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
+// If a logged in session doesn't exists, redirect the request to the login page
 router.get('/profile', (req, res) => {
-  // If a session exists, redirect the request to the profile page
-  if (req.session.logged_in) {
-    res.redirect('/profile');
+  if (!req.session.logged_in) {
+    res.redirect('/login');
     return;
   }
 
-  res.render('login');
+  res.render('profile');
 });
 
 

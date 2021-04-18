@@ -55,7 +55,6 @@ router.post('/', (req, res) => {
           return {
             list_id: list.id,
             movie_id,
-
           };
         });
         return Movielist.bulkCreate(listMovieIdArr);
