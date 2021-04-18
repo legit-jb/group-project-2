@@ -18,7 +18,7 @@ Movie.init(
     },
     Awards: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     Director: {
       type: DataTypes.STRING,
