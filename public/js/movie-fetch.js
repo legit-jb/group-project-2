@@ -35,7 +35,7 @@ const getMovie = async (id) => {
         method: 'POST',
         body: movie,
     }
-    await fetch('http://817dc17e6c61.ngrok.io/api/movies', options);
+    await fetch('api/movies', options);
     
 };
 // end getMovie function
