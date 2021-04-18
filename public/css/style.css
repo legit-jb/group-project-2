@@ -1,141 +1,145 @@
 :root {
-    --dark: #222126;
-    --gray: #59554C;
-    --bright-gold: #F2A649;
-    --dark-gold: #BF8C4E;
-    --light: #F2E5D5;
-}
-
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
+  --dark: #222126;
+  --gray: #59554c;
+  --bright-gold: #f2a649;
+  --dark-gold: #bf8c4e;
+  --light: #f2e5d5;
 }
 
 body {
-    background-color: var(--dark);
+  background-color: var(--dark);
 }
 
 header {
-    background-color: var(--dark);
-    color: var(--bright-gold);
-    margin: 20px;
-    text-align: center;
+  background-color: var(--dark);
+  color: var(--bright-gold);
+  margin: 20px;
+  text-align: center;
 }
 
 a {
-    text-decoration: none;
-    color:var(--bright-gold);
+  text-decoration: none;
+  color: var(--bright-gold);
 }
 
 a:hover {
-    color:var(--gray);
+  color: var(--gray);
 }
 
 h1 {
-    color: var(--bright-gold);
+  color: var(--bright-gold);
 }
 
 h2 {
-    color:var(--dark-gold);
+  color: var(--dark-gold);
 }
 
 h3 {
-    color: var(--bright-gold);
+  color: var(--bright-gold);
 }
 
 nav {
-    background-color: var(--dark-gold);
-    border: solid 3px var(--bright-gold);
-    height: 76px;
+  background-color: var(--dark-gold);
+  border: solid 3px var(--bright-gold);
+  height: 76px;
 }
 
-nav a{
-    color:var(--dark);
-    padding: 100px;
+nav a {
+  color: var(--dark);
+  padding: 100px;
 }
 
-nav a:hover{
-    color:var(--light);
+nav a:hover {
+  color: var(--light);
 }
 
 .login-card {
-    margin: 0 0 20px 0;
-    max-width: 35%;
-    padding: 5px;
-    border: 3px solid var(--bright-gold);
-    background-color: var(--light);
-    color: var(--dark);
-    text-align: center;
+  margin: 0 0 20px 0;
+  max-width: 35%;
+  padding: 5px;
+  border: 3px solid var(--bright-gold);
+  background-color: var(--light);
+  color: var(--dark);
+  text-align: center;
 }
 
 .login-card h2 {
-    color:var(--dark);
+  color: var(--dark);
 }
 
 .card {
-    margin: 0 0 20px 0;
-    max-width: 100%;
-    padding: 5px;
-    border: 1px solid var(--bright-gold);
-    background-color: var(--dark);
-    color: var(--light);
+  margin: 0 0 20px 0;
+  max-width: 100%;
+  padding: 5px;
+  border: 1px solid var(--bright-gold);
+  background-color: var(--dark);
+  color: var(--light);
 }
 
 .card-head {
-    background-color:var(--dark-gold);
-    color: var(--dark);
-    text-align: center;
+  background-color: var(--dark-gold);
+  color: var(--dark);
+  text-align: center;
 }
 
 .jumbotron {
-    background-image: url("../images/timothy-eberly-dTLlhgeEJWg-unsplash.jpg");
-    background-size: cover;
-    height: 700px;
-    color: var(--light);
-  }
+  background-image: url('../images/timothy-eberly-dTLlhgeEJWg-unsplash.jpg');
+  background-size: cover;
+  height: 700px;
+  color: var(--light);
+}
 
-.jumbotron button, .search-btn {
-    background-color:var(--light);
+.btn {
+  background-color: var(--bright-gold);
 }
 
 .jumbotron h2 {
-    color:var(--dark-gold);
+  color: var(--dark-gold);
+}
+
+.jumbotron h3 {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--dark);
 }
 
 .slogan-bar {
-    background-color: var(--dark);
+  background-color: var(--dark);
 }
 
 aside {
-    background-color: var(--gray);
-    color: var(--light);
-    text-align: left;
+  background-color: var(--gray);
+  color: var(--light);
+  text-align: left;
 }
 
 aside h2 {
-    border-bottom: 1px solid var(--dark);
+  border-bottom: 1px solid var(--dark);
 }
 
-aside ul{
-    list-style-type: none;
+aside ul {
+  list-style-type: none;
 }
 
 aside a {
-    color:var(--light);
+  color: var(--light);
 }
 
 aside a:hover {
-    color:var(--bright-gold);
+  color: var(--bright-gold);
 }
 
 .sign-link {
-    color:var(--dark-gold);
+  color: var(--dark-gold);
 }
 
 .sign-link:hover {
-    color:var(--gray);
+  color: var(--gray);
 }
 
 .list-card {
-    max-width: 35%;
+  max-width: 35%;
+}
+
+.movie-card-btn {
+  max-width: 10%;
 }

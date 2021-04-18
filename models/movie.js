@@ -18,7 +18,7 @@ Movie.init(
     },
     Awards: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     Director: {
       type: DataTypes.STRING,
@@ -31,7 +31,6 @@ Movie.init(
     imdbID: {
       type: DataTypes.STRING,
       field: 'imdbID',
-      primaryKey: true,
       allowNull: false
     },
     imdbRating: {

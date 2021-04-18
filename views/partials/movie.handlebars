@@ -2,5 +2,23 @@
     <div class="card-head">
         {{Title}}
     </div>
-    <
-</div>
+    <img src={{Poster}} alt="{{Title}} poster" class="float-left">
+    <div class="movie-blurb">
+        <p>{{Rated}}</p>
+        <p>{{Genre}}</p>
+        <p>Director: {{Director}}</p>
+        <p>Actors: {{Actors}}</p>
+        <p>Synopsis: {{Plot}}</p>
+        <p>Released: {{Released}} | Runtime: {{Runtime}}</p>
+        <p>Ratings:</p>
+        <p>IMBD: {{imdbRating}} | Metacritic: {{MetacriticRating}} | Rotten Tomatoes: {{RottenTomRating}}</p>
+    </div>
+    
+        <div id="user-thoughts">
+            <p>
+            <h2><i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-down"></i></h2>
+            </p>
+            {{>forum}}
+        </div>
+    </div>
+<script src="../public/js/updownvote.js"></script>

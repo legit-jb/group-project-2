@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { List, Movie, Movielist, User } = require('../../models');
-const { route } = require('./user-routes');
+const { List, Movie, Movielist, } = require('../../models');
+
 // get all lists, include associated movies
-router.get('/', async (req, res) => {
+router.get('/list', async (req, res) => {
     try {
       const listData = await List.findAll({
         include: { model: Movie, through: Movielist}
