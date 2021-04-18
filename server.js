@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-// Initializes Sequelize with session store
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const routes = require('./controllers');
@@ -12,14 +11,14 @@ const helpers = require('./utils/helpers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Sets up session and connect to our Sequelize db
+const cors = require("cors")
+app.use(cors())
+
 const sess = {
   secret: 'This cannot be told',
-  // Tells our session to use cookies
   cookie: {},
   resave: false,
   saveUninitialized: true,
-  // Sets up session store
   store: new SequelizeStore({
     db: sequelize,
   }),
@@ -40,4 +39,18 @@ app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
-});
+}); 
+
+// const fetch = require('node-fetch');
+
+// const url = 'http://817dc17e6c61.ngrok.io/api/lists';
+
+// const body = { list_name: "new list", user_id: 2, movieIds: [1,2] };
+ 
+// fetch(url, {
+//         method: 'post',
+//         body:    JSON.stringify(body),
+//         headers: { 'Content-Type': 'application/json' },
+//     })
+//     .then(res => res.json())
+//     .then(json => console.log(json));
