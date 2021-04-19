@@ -21,18 +21,21 @@
         </header>
         <nav>
             {{#if logged_in}}
-            <a href="/">Home</a>
+            <p>
+            <button class="btn btn-outline-dark m-3" id="logout">logout</button>
             <a href="/dashboard">Dashboard</a>
-            <button class="btn" id="logout">logout</button>
+            
              <input type="text" id="movie-search" placeholder="Search for Movies " size="35" />
+            
         <button class="btn btn-outline-dark m-3 search-btn" id="search-btn" type="submit">
           Search
         </button>
+        </p>
             {{else}}
-            
+            <p>
             <a href="/">Home</a>
             <a href="/login">Login</a>
-
+            </p>
             {{/if}}
         </nav>
     </header>

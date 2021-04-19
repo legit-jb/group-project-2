@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Movie, List, Movielist } = require('../models');
+const { Movie, List, Movielist, User } = require('../models');
 const withAuth = require("../utils/auth");
 
 
@@ -24,6 +24,7 @@ router.get('/profile', function (req, res) {
 // gets user data and connects it to the handlebars homepage
 router.get('/dashboard', async (req, res) => {
   try {
+
     // Get all projects and JOIN with user data
     const listData = await List.findAll({
       include: [

@@ -1,52 +1,63 @@
 <li><a data-bs-toggle="modal" data-bs-target="#movieModal{{@index}}">{{Title}}</a></li>
 <div class="modal fade" id="movieModal{{@index}}" tabindex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-xl p-2">
-    <div class="modal-content">
-        <div class="modal-header bg-dark align-content-center">
-            <h2>{{Title}}</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body bg-dark">
-            <div class="card my-4 p-2">
-                <div class="add-info">
-                    <div class="row justify-content-around">
-                    <div class="col-4">
-                    <img src={{Poster}} alt="{{Title}} poster">
-                    <p id="movie-id">{{id}}</p>
+    <div class="modal-dialog modal-xl p-2">
+        <div class="modal-content">
+            <div class="modal-header bg-dark align-content-center">
+                <h2>{{Title}}</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-dark">
+                <div class="card my-4 p-2">
+                    <div class="add-info">
+                        <div class="row justify-content-around">
+                            <div class="col-4">
+                                <img src={{Poster}} alt="{{Title}} poster">
+                                <p id="movie-id">{{id}}</p>
+                            </div>
+                            <div class="movie-blurb col-8">
+                                <p>{{Rated}}</p>
+                                <p>{{Genre}}</p>
+                                <p><strong>Director:</strong> {{Director}}</p>
+                                <p><strong>Actors:</strong> {{Actors}}</p>
+                                <p><strong>Synopsis:</strong> {{Plot}}</p>
+                                <p><strong>Released:</strong> {{Released}} | <strong>Runtime:</strong> {{Runtime}}</p>
+                                <p><strong>Ratings:</strong></p>
+                                <p><strong>IMBD:</strong> {{imdbRating}} | <strong>Metacritic:</strong>
+                                    {{MetacriticRating}} | <strong>Rotten Tomatoes:</strong>
+                                    {{RottenTomRating}}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <form class="py-2">
+                                <label for="DataList" class="form-label">Add to List:</label>
+                                <input class="form-control" list="datalistOptions" id="DataList"
+                                    placeholder="Enter list name">
+                                <datalist id="datalistOptions">
+                                {{#each list}}<option value="{{list_name}}">{{/each}}
+                                </datalist>
+                                 <div class="modal-center">
+                                    <button type="submit" class="btn btn-outline-dark m-3">Save</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="movie-blurb col-8">
-                        <p>{{Rated}}</p>
-                        <p>{{Genre}}</p>
-                        <p><strong>Director:</strong> {{Director}}</p>
-                        <p><strong>Actors:</strong> {{Actors}}</p>
-                        <p><strong>Synopsis:</strong> {{Plot}}</p>
-                        <p><strong>Released:</strong> {{Released}} | Runtime: {{Runtime}}</p>
-                        <p><strong>Ratings:</strong></p>
-                        <p><strong>IMBD:</strong> {{imdbRating}} | <strong>Metacritic:</strong> {{MetacriticRating}} | <strong>Rotten Tomatoes:</strong>
-                            {{RottenTomRating}}</p>
+                    <div id="user-thoughts">
+                        <form class="py-3">
+                            <div class="mb-3">
+                                <label for="reviewform" class="form-label">Review:</label>
+                                <textarea class="form-control" id="comment-signup" rows="3"></textarea>
+                                <div class="modal-center">
+                                    <button type="submit" class="btn btn-outline-dark m-3">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-center">
+                            <p>
+                            <h2><span id="upvote"><i class="far fa-thumbs-up"></i></span> <span id="downvote"><i
+                                        class="far fa-thumbs-down"></span></i></h2>
+                            </p>
+                        </div>
                     </div>
-                    </div>
-                    <button class="btn btn-outline-dark m-3 movie-card-btn" data-bs-toggle="collapse"
-                        href="#collapseMyList" role="button" aria-expanded="false" aria-controls="collapse"><i
-                            class="far fa-plus-square"></i> Add to
-                        List</button>
-                    </li>
-                    <div class="row align-content-center">
-                    <div class="collapse" id="collapseMyList">
-                        <ul>
-                            {{#each user.lists as |list|}}
-                            <li class="list-title"><button type="submit" name="{{list_name}}"><i
-                                        class="fas fa-plus"></i></button>
-                                {{list_name}}</li>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
-                <div id="user-thoughts">
-                    <p>
-                    <h2><i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-down"></i></h2>
-                    </p>
-                </div>
                 </div>
             </div>
         </div>
@@ -54,4 +65,4 @@
 </div>
 </div>
 <script src="./js/addtolist.js"></script>
-<script src="./js/updownvote.js"></script>
+<script src="./js/review.js"></script>
