@@ -1,5 +1,5 @@
-const listBlock = document.getElementById('userlists')
-const listForm = document.getElementById('createlist')
+let listBlock = document.getElementById('userlists')
+let listForm = document.getElementById('createlist')
 
 async function newFormHandler(event) {
     event.preventDefault();
