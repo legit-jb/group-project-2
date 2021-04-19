@@ -1,60 +1,65 @@
 const router = require("express").Router();
-const { Movie, List, Movielist } = require('../models');
+const { Movie, List, Movielist, User } = require("../models");
 const withAuth = require("../utils/auth");
 
-
-
-router.get('/', function (req, res) {
+router.get("/", function (req, res) {
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
+    res.redirect("/dashboard");
     return;
   }
-  res.render('landingpage')
-})
+  res.render("landingpage");
+});
 
-router.get('/signup', function (req, res) {
-  res.render('signup')
-})
+router.get("/signup", function (req, res) {
+  res.render("signup");
+});
 
-
-router.get('/profile', function (req, res) {
-  res.render('profile')
-})
-
-// gets user data and connects it to the handlebars homepage
-router.get('/dashboard', async (req, res) => {
+router.get("/profile", withAuth, async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
-    const listData = await List.findAll({
-      include: [
-        {
-          model: Movie, through: Movielist
-        },
-      ],
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+      include: [{ model: List, through: Movielist }],
     });
 
-    // Serialize data so the template can read it
-    const lists = listData.map((list) => list.get({ plain: true }));
+    const user = userData.get({ plain: true });
 
-    // Pass serialized data and session flag into template
-    res.render('dashboard', { 
-      lists, 
-      logged_in: req.session.logged_in 
+    res.render("profile", {
+      ...user,
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+// gets user data and connects it to the handlebars homepage
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      model: Movielist,
+      include: [{ model: User }, { model: List }],
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render("dashboard", {
+      ...user,
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // If user is logged in redirects to homepage, otherwise renders login page
-router.get('/login', (req, res) => {
+router.get("/login", (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
+    res.redirect("/dashboard");
     return;
   }
-  res.render('login');
+  res.render("login");
 });
 
 module.exports = router;
