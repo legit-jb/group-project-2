@@ -1,5 +1,33 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, List } = require('../../models');
+
+router.get('/', async (req, res) => {
+  try {
+    const userdata = await User.findAll({
+      include: { model: List }
+    });
+
+    res.status(200).json(userdata);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const userdata = await User.findByPk(req.params.id, {
+      include: { model: List }
+    });
+    if (!userdata) {
+      res.status(404).json({ message: 'No movie found with this id!' });
+      return;
+    }
+
+    res.status(200).json(userdata);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.post('/', async (req, res) => {
   try {
