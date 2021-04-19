@@ -14,6 +14,7 @@ Comment.init(
     movie_review: {
       type: DataTypes.STRING,
     },
+    
     movie_id: {
       type: DataTypes.INTEGER,
       references: {
