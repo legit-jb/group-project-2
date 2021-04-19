@@ -2,6 +2,7 @@ const User = require("./user");
 const List = require("./lists");
 const Movie = require("./movie");
 const Movielist = require("./movielist");
+const Comment = require("./comment");
 
 User.hasMany(List, {
   foreignKey: "user_id",
@@ -22,4 +23,16 @@ Movie.belongsToMany(List, {
         foreignKey: "list_id"
       },
 });
-module.exports = { User, List, Movie, Movielist };
+
+Movie.hasMany(Comment, {
+  foreignKey: "movie_id",
+  onDelete: "CASCADE",
+});
+
+Comment.belongsTo(Movie,{
+  foreignKey: "movie_id"
+}
+  
+)
+
+module.exports = { User, List, Movie, Movielist, Comment};
