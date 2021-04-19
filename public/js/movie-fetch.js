@@ -15,7 +15,7 @@ const getMovie = (id) => {
                 console.log("This is passed check: " + json.Title);
             } else {
                 console.log ("failed check geting from omdb")
-                fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
+                fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
                     .then(res => res.json())
                     .then(movie => {
                         const { Ratings } = movie;
@@ -62,7 +62,7 @@ const getMovie = (id) => {
 // searches for movie based on search input and generates a list of results for the user to click
 const searchMovie = async (search) => {
     // const searchList = document.getElementById("search-list")
-    const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${search}`);
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${search}`);
     const { Search } = await response.json();
     
     if (Search) {
