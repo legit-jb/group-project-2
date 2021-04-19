@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const { Movie } = require('../models');
-// const sequelize = require('../config/connection');
+const sequelize = require('../config/connection');
 const searchItem = "";
 
 // searchMovie function searches OMDB.com api to get the movie object and returns it
@@ -8,7 +8,7 @@ const fetchMovie = (searchInput) => {
     const apiKey = "c7fe7839";
     const apiKey2 = "4c11a62";
 
-    // sequelize.sync();
+    sequelize.sync();
 
     fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${searchInput}`)
         .then(res => res.json())
@@ -44,8 +44,8 @@ const fetchMovie = (searchInput) => {
 
         })
         .then(movie => {
-            const sequelize = require('../config/connection');
-            sequelize.sync();
+            // const sequelize = require('../config/connection');
+            // sequelize.sync();
             console.log ("This is movie " +movie.json());
             Movie.create(JSON.stringify(movie));
         })
@@ -62,6 +62,6 @@ const fetchMovie = (searchInput) => {
 
 }
 
-fetchMovie("tt0068646");
+fetchMovie("tt0499549");
 
 module.exports = fetchMovie();
