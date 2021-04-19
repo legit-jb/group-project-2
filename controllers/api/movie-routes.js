@@ -24,7 +24,8 @@ router.get("/:imdbid", async (req, res) => {
       include: { model: List, through: Movielist },
     });
     if (!movieData) {
-      res.status(404).json({ message: "No movie found with this id!" });
+      res.status(404).json({ message: "No movie found with this id!",
+    status: "404" });
       return;
     }
     res.status(200).json(movieData);
