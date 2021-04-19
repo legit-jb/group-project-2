@@ -6,17 +6,17 @@ const apiKey2 = "4c11a62";
 // searchMovie function searches OMDB.com api with the imbd id to get the movie object and returns it
 const getMovie = (id) => {
 
-    fetch(`http://817dc17e6c61.ngrok.io/api/movies/${id}`)
+    fetch(`api/movies/${id}`)
         .then(res => res.json())
         .then(json => {
             console.log(json);
 
-            if (json.status >= 200 && json.status <= 299) {
-                console.log("This is check: " + json);
+            if (json.Title) {
+                console.log("This is passed check: " + json.Title);
             } else {
-
+                console.log ("failed check geting from omdb")
                 fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
-                    .then(response => response.json())
+                    .then(res => res.json())
                     .then(movie => {
                         const { Ratings } = movie;
 
@@ -39,10 +39,13 @@ const getMovie = (id) => {
                         movie.RottenTomRating = Ratings[1].Value;
                         movie.MetacriticRating = Ratings[2].Value;
 
-                        console.log(movie);
-                        // Now add the object to the db
-                        const url = 'http://817dc17e6c61.ngrok.io/api/movies';
-                        fetch(url, {
+                        
+                        return movie;
+
+                    })
+                    .then (movie => {
+                        console.log("this is movie stringified "+JSON.stringify(movie));
+                        fetch('api/movies', {
                             method: 'post',
                             body: JSON.stringify(movie),
                             headers: { 'Content-Type': 'application/json'} 
