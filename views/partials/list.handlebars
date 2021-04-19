@@ -3,8 +3,8 @@
         {{list_name}}
     </div>
     <ol>
-    {{#each list.movies as |movie|}}
-    <li><a data-bs-toggle="modal" data-bs-target="#movieModal">{{Title}}</a></li>
+    {{#each movies as |movie|}}
+    {{>movie}}
     {{/each}}
     </ol>
 </div>
