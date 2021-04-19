@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Movie, List, Movielist } = require('../models');
-const Usermovielist = require("../models/usermovielist");
 const withAuth = require("../utils/auth");
 
 
