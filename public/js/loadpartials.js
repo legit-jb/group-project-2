@@ -1,18 +1,21 @@
-let myLists = document.getElementById('my-lists')
-let newList = document.getElementById('new-list')
-let listBlock = document.getElementById('userlists')
-let listForm = document.getElementById('createlist')
+const myLists = document.getElementById('my-lists')
+const newList = document.getElementById('new-list')
+const listForm = document.getElementById('createlist')
+const listBlock = document.getElementById('userlists')
+
+listForm.style.display = 'none'
+listBlock.style.display = 'none'
 
 myLists.addEventListener('click', () => {
   if ((listForm.style.display = 'block')) {
     listForm.style.display = 'none'
   }
 
-  listBlock.style.display = 'block'
+  listBlock.style.display = 'inline'
 })
 
 newList.addEventListener('click', () => {
-  if ((listBlock.style.display = 'block')) {
+  if ((listBlock.style.display = 'inline')) {
     listBlock.style.display = 'none'
   }
 
@@ -24,7 +27,7 @@ async function newFormHandler(event) {
   const list_name = document.querySelector('#new-list-name').value;
   
   
-  const response = await fetch(`/api/list`, {
+  const response = await fetch('/api/lists', {
     method: 'POST',
     body: JSON.stringify({
       list_name
@@ -36,10 +39,10 @@ async function newFormHandler(event) {
   
   if (response.ok) {
       listForm.style.display = 'none'
-      listBlock.style.display = 'block'
+      listBlock.style.display = 'inline'
   } else {
     alert('Failed to add list');
   }
 }
 
-document.querySelector('.new-list-form').addEventListener('submit', newFormHandler);
+document.querySelector('#new-list-form').addEventListener('submit', newFormHandler);

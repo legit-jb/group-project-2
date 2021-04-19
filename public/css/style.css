@@ -52,6 +52,7 @@ nav {
 nav a {
   color: var(--dark);
   padding: 100px;
+  font-size: larger;
 }
 
 nav a:hover {
@@ -151,4 +152,18 @@ aside a:hover {
 
 #movie-id {
   color:var(--dark);
+}
+
+#new_list:hover {
+  color:var(--dark-gold);
+  cursor: pointer;
+}
+
+#my_lists:hover {
+  color:var(--dark-gold);
+  cursor: pointer;
+}
+
+.modal-center {
+  text-align: center;
 }
