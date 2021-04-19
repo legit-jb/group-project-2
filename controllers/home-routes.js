@@ -17,25 +17,9 @@ router.get('/signup', function (req, res) {
 })
 
 
-// If a logged in session doesn't exists, render the login page
-router.get('/profile', async (req, res) => {
-  try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
-    });
-
-    const users = userData.map((project) => project.get({ plain: true }));
-
-    res.render('profile', {
-      users,
-      // Pass the logged in flag to the template
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+router.get('/profile', function (req, res) {
+  res.render('profile')
+})
 
 // gets user data and connects it to the handlebars homepage
 router.get('/dashboard', async (req, res) => {
