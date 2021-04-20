@@ -54,7 +54,8 @@ const getMovie = (id) => {
                 fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
                     .then(res => res.json())
                     .then(movie => {
-                        const { Ratings } = movie;
+                        
+                        const { Ratings, Poster, Title, id, Director, Rated, Genre, Actors, Synopsis, Released, imdbRating, MetacriticRating, RottenTomRating, Runtime, Plot } = movie;
 
                         // delete unused properties
                         delete movie.BoxOffice;
@@ -73,18 +74,8 @@ const getMovie = (id) => {
                         // add the ratings back into the object but as separate properties
                         movie.imdbRating = Ratings[0].Value;
                         movie.RottenTomRating = Ratings[1].Value;
-                        movie.MetacriticRating = Ratings[2].Value; 
-
-                        
-
-                        return movie;
-
-                        
-                    })
-                    .then (movie => {
-                        const {Poster, Title, id, Director, Rated, Genre, Actors, Synopsis, Released, imdbRating, MetacriticRating, RottenTomRating, Runtime, Plot} = json;
-
-                searchResults.innerHTML = `<div class="card my-4 p-2">
+                        movie.MetacriticRating = Ratings[2].Value;   
+                        searchResults.innerHTML = `<div class="card my-4 p-2">
                 <div class="add-info">
                     <div class="row justify-content-around">
                         <div class="col-4">
@@ -118,6 +109,11 @@ const getMovie = (id) => {
                     </div>
                 </div>
             </div>`
+      
+                        return movie;
+                    })
+                    .then (movie => {
+                        
                         fetch('api/movies', {
                             method: 'post',
                             body: JSON.stringify(movie),
