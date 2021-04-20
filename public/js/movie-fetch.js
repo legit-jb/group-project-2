@@ -12,7 +12,43 @@ const getMovie = (id) => {
             console.log(json);
 
             if (json.Title) {
-                console.log("This is passed check: " + json.Title);
+                const {Poster, Title, id, Director, Rated, Genre, Actors, Synopsis, Released, imdbRating, MetacriticRating, RottenTomRating, Runtime, Plot} = json;
+
+                searchResults.innerHTML = `<div class="card my-4 p-2">
+                <div class="add-info">
+                    <div class="row justify-content-around">
+                        <div class="col-4">
+                            <img src=${Poster} alt="${Title} poster">
+                            <p id="movie-id">${id}</p>
+                        </div>
+                        <div class="movie-blurb col-8">
+                            <p>${Rated}</p>
+                            <p>${Genre}</p>
+                            <p><strong>Director:</strong> ${Director}</p>
+                            <p><strong>Actors:</strong> ${Actors}</p>
+                            <p><strong>Synopsis:</strong> ${Plot}</p>
+                            <p><strong>Released:</strong> ${Released} | <strong>Runtime:</strong> ${Runtime}</p>
+                            <p><strong>Ratings:</strong></p>
+                            <p><strong>IMBD:</strong> ${imdbRating} | <strong>Metacritic:</strong>
+                                ${MetacriticRating} | <strong>Rotten Tomatoes:</strong>
+                                ${RottenTomRating}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <form class="py-2">
+                            <label for="DataList" class="form-label">Add to List:</label>
+                            <input class="form-control" list="datalistOptions" id="DataList" placeholder="Enter list name">
+                            <datalist id="datalistOptions">
+                                {{#each list}}<option value="{{list_name}}">{{/each}}
+                            </datalist>
+                            <div class="modal-center">
+                                <button type="submit" class="btn btn-outline-dark m-3">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>`
+
             } else {
                 console.log ("failed check geting from omdb")
                 fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
@@ -37,14 +73,51 @@ const getMovie = (id) => {
                         // add the ratings back into the object but as separate properties
                         movie.imdbRating = Ratings[0].Value;
                         movie.RottenTomRating = Ratings[1].Value;
-                        movie.MetacriticRating = Ratings[2].Value;
+                        movie.MetacriticRating = Ratings[2].Value; 
 
                         
+
                         return movie;
 
+                        
                     })
                     .then (movie => {
-                        console.log("this is movie stringified "+JSON.stringify(movie));
+                        const {Poster, Title, id, Director, Rated, Genre, Actors, Synopsis, Released, imdbRating, MetacriticRating, RottenTomRating, Runtime, Plot} = json;
+
+                searchResults.innerHTML = `<div class="card my-4 p-2">
+                <div class="add-info">
+                    <div class="row justify-content-around">
+                        <div class="col-4">
+                            <img src=${Poster} alt="${Title} poster">
+                            <p id="movie-id">${id}</p>
+                        </div>
+                        <div class="movie-blurb col-8">
+                            <p>${Rated}</p>
+                            <p>${Genre}</p>
+                            <p><strong>Director:</strong> ${Director}</p>
+                            <p><strong>Actors:</strong> ${Actors}</p>
+                            <p><strong>Synopsis:</strong> ${Plot}</p>
+                            <p><strong>Released:</strong> ${Released} | <strong>Runtime:</strong> ${Runtime}</p>
+                            <p><strong>Ratings:</strong></p>
+                            <p><strong>IMBD:</strong> ${imdbRating} | <strong>Metacritic:</strong>
+                                ${MetacriticRating} | <strong>Rotten Tomatoes:</strong>
+                                ${RottenTomRating}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <form class="py-2">
+                            <label for="DataList" class="form-label">Add to List:</label>
+                            <input class="form-control" list="datalistOptions" id="DataList" placeholder="Enter list name">
+                            <datalist id="datalistOptions">
+                                {{#each list}}<option value="{{list_name}}">{{/each}}
+                            </datalist>
+                            <div class="modal-center">
+                                <button type="submit" class="btn btn-outline-dark m-3">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>`
                         fetch('api/movies', {
                             method: 'post',
                             body: JSON.stringify(movie),
@@ -94,6 +167,7 @@ movieClickHandler = (event) => {
     if (movieSearch.value !== "") {
         const movie = movieSearch.value;
         searchMovie(movie);
+        searchResults.innerHTML = "";
         movieSearch.value = "";
     }
     // end of if
