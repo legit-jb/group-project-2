@@ -42,5 +42,6 @@ landing page background photo by [Timothy Eberly](https://unsplash.com/@timothye
 
 ## Developer Credits:
 Sean - mostly worked on models, seeds and api routes.  
-Artemis - Handlebars templates  
+Dawan - Server, DB, API Route Functionality.  
+Artemis - Handlebars templates   
 J - seed creation, 3rd party API, and some front end scripting
