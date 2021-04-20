@@ -9,16 +9,51 @@ const getMovie = (id) => {
     fetch(`api/movies/${id}`)
         .then(res => res.json())
         .then(json => {
-            console.log(json);
 
             if (json.Title) {
-                console.log("This is passed check: " + json.Title);
+                const {Poster, Title, id, Director, Rated, Genre, Actors, Synopsis, Released, imdbRating, MetacriticRating, RottenTomRating, Runtime, Plot} = json;
+
+                searchResults.innerHTML = `<div class="card my-4 p-2">
+                <div class="add-info">
+                    <div class="row justify-content-around">
+                        <div class="col-4">
+                            <img src=${Poster} alt="${Title} poster">
+                            <p id="movie-id">${id}</p>
+                        </div>
+                        <div class="movie-blurb col-8">
+                            <p>${Rated}</p>
+                            <p>${Genre}</p>
+                            <p><strong>Director:</strong> ${Director}</p>
+                            <p><strong>Actors:</strong> ${Actors}</p>
+                            <p><strong>Synopsis:</strong> ${Plot}</p>
+                            <p><strong>Released:</strong> ${Released} | <strong>Runtime:</strong> ${Runtime}</p>
+                            <p><strong>Ratings:</strong></p>
+                            <p><strong>IMBD:</strong> ${imdbRating} | <strong>Metacritic:</strong>
+                                ${MetacriticRating} | <strong>Rotten Tomatoes:</strong>
+                                ${RottenTomRating}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <form class="py-2">
+                            <label for="DataList" class="form-label">Add to List:</label>
+                            <input class="form-control" list="datalistOptions" id="DataList" placeholder="Enter list name">
+                            <datalist id="datalistOptions">
+                                {{#each list}}<option value="{{list_name}}">{{/each}}
+                            </datalist>
+                            <div class="modal-center">
+                                <button type="submit" class="btn btn-outline-dark m-3">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>`
+
             } else {
-                console.log ("failed check geting from omdb")
                 fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
                     .then(res => res.json())
                     .then(movie => {
-                        const { Ratings } = movie;
+                        
+                        const { Ratings, Poster, Title, id, Director, Rated, Genre, Actors, Synopsis, Released, imdbRating, MetacriticRating, RottenTomRating, Runtime, Plot } = movie;
 
                         // delete unused properties
                         delete movie.BoxOffice;
@@ -37,14 +72,46 @@ const getMovie = (id) => {
                         // add the ratings back into the object but as separate properties
                         movie.imdbRating = Ratings[0].Value;
                         movie.RottenTomRating = Ratings[1].Value;
-                        movie.MetacriticRating = Ratings[2].Value;
-
-                        
+                        movie.MetacriticRating = Ratings[2].Value;   
+                        searchResults.innerHTML = `<div class="card my-4 p-2">
+                <div class="add-info">
+                    <div class="row justify-content-around">
+                        <div class="col-4">
+                            <img src=${Poster} alt="${Title} poster">
+                            <p id="movie-id">${id}</p>
+                        </div>
+                        <div class="movie-blurb col-8">
+                            <p>${Rated}</p>
+                            <p>${Genre}</p>
+                            <p><strong>Director:</strong> ${Director}</p>
+                            <p><strong>Actors:</strong> ${Actors}</p>
+                            <p><strong>Synopsis:</strong> ${Plot}</p>
+                            <p><strong>Released:</strong> ${Released} | <strong>Runtime:</strong> ${Runtime}</p>
+                            <p><strong>Ratings:</strong></p>
+                            <p><strong>IMBD:</strong> ${imdbRating} | <strong>Metacritic:</strong>
+                                ${MetacriticRating} | <strong>Rotten Tomatoes:</strong>
+                                ${RottenTomRating}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <form class="py-2">
+                            <label for="DataList" class="form-label">Add to List:</label>
+                            <input class="form-control" list="datalistOptions" id="DataList" placeholder="Enter list name">
+                            <datalist id="datalistOptions">
+                                {{#each list}}<option value="{{list_name}}">{{/each}}
+                            </datalist>
+                            <div class="modal-center">
+                                <button type="submit" class="btn btn-outline-dark m-3">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>`
+      
                         return movie;
-
                     })
                     .then (movie => {
-                        console.log("this is movie stringified "+JSON.stringify(movie));
+                        
                         fetch('api/movies', {
                             method: 'post',
                             body: JSON.stringify(movie),
@@ -64,7 +131,7 @@ const searchMovie = async (search) => {
     // const searchList = document.getElementById("search-list")
     const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${search}`);
     const { Search } = await response.json();
-    
+    console.log (Search);
     if (Search) {
     // creates div for list of results
     const listContainer = document.createElement('UL');
@@ -73,12 +140,14 @@ const searchMovie = async (search) => {
 
     // displays results by title. The imdb id is the id for the element
     Search.forEach(flick => {
-        const { Title, imdbID } = flick;
+        const { Title, imdbID, Poster, Year, Type } = flick;
+        if (Type == 'movie'){
         const liEl = document.createElement('li');
         liEl.classList.add('clickable');
-        liEl.innerHTML = Title;
+        liEl.innerHTML = `<img class = "res-img" src=${Poster} width="75" height="111" alt="${Title} poster">${Title} (${Year})`;
         liEl.setAttribute('id', imdbID)
         listContainer.appendChild(liEl);
+        }
     });
     // end of search.foreach
 } else {
@@ -94,6 +163,7 @@ movieClickHandler = (event) => {
     if (movieSearch.value !== "") {
         const movie = movieSearch.value;
         searchMovie(movie);
+        searchResults.innerHTML = "";
         movieSearch.value = "";
     }
     // end of if

@@ -30,14 +30,19 @@
                         <div>
                             <form class="py-2">
                                 <label for="DataList" class="form-label">Add to List:</label>
-                                <input class="form-control" list="datalistOptions" id="DataList"
+                                <input class="form-control" list="datalistOptions" id="DataList{{@index}}"
                                     placeholder="Enter list name">
-                                <datalist id="datalistOptions">
+                                <datalist id="datalistOptions{{@index}}">
                                 {{#each list}}<option value="{{list_name}}">{{/each}}
                                 </datalist>
                                  <div class="modal-center">
                                     <button type="submit" class="btn btn-outline-dark m-3">Save</button>
                                 </div>
+                            </form>
+                            <form>
+                                <p>Add Review:</p>
+                                <textarea id="comment-signup" rows="3" cols="100"></textarea>
+                                <button type="submit" class="btn btn-outline-dark m-3">Save</button>
                             </form>
                         </div>
                     </div>
