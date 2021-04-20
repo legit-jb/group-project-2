@@ -9,7 +9,6 @@ const getMovie = (id) => {
     fetch(`api/movies/${id}`)
         .then(res => res.json())
         .then(json => {
-            console.log(json);
 
             if (json.Title) {
                 const {Poster, Title, id, Director, Rated, Genre, Actors, Synopsis, Released, imdbRating, MetacriticRating, RottenTomRating, Runtime, Plot} = json;
@@ -50,7 +49,6 @@ const getMovie = (id) => {
             </div>`
 
             } else {
-                console.log ("failed check geting from omdb")
                 fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
                     .then(res => res.json())
                     .then(movie => {
@@ -133,7 +131,7 @@ const searchMovie = async (search) => {
     // const searchList = document.getElementById("search-list")
     const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${search}`);
     const { Search } = await response.json();
-    
+    console.log (Search);
     if (Search) {
     // creates div for list of results
     const listContainer = document.createElement('UL');
@@ -142,12 +140,14 @@ const searchMovie = async (search) => {
 
     // displays results by title. The imdb id is the id for the element
     Search.forEach(flick => {
-        const { Title, imdbID } = flick;
+        const { Title, imdbID, Poster, Year, Type } = flick;
+        if (Type == 'movie'){
         const liEl = document.createElement('li');
         liEl.classList.add('clickable');
-        liEl.innerHTML = Title;
+        liEl.innerHTML = `<img class = "res-img" src=${Poster} width="75" height="111" alt="${Title} poster">${Title} (${Year})`;
         liEl.setAttribute('id', imdbID)
         listContainer.appendChild(liEl);
+        }
     });
     // end of search.foreach
 } else {

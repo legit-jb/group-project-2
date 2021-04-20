@@ -167,3 +167,19 @@ aside a:hover {
 .modal-center {
   text-align: center;
 }
+
+/* #list-container {
+  display: flex;
+  flex-direction: column;
+} */
+
+.clickable {
+  cursor: pointer;
+  list-style-type: none;
+  margin: 5px;
+}
+
+.res-img {
+  cursor: none;
+  margin-right: 30px;
+}
