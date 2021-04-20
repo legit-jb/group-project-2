@@ -2,9 +2,11 @@ async function newFormHandler(event) {
     event.preventDefault();
 
     const movieId = document.querySelector('#movie-id');
+
+    const listName = document.querySelector('#DataList').value.trim();
     
     // do whatever you want with this, it's basically just boilerplate
-    const response = await fetch(`/api/list/:id`, {
+    const response = await fetch(`/api/lists/:id`, {
       method: 'PUT',
       body: JSON.stringify({
         movieId
