@@ -27,7 +27,7 @@ The goal was to build an app that would allow users to keep track of movies. Mov
 
 - [Node-fetch](https://www.npmjs.com/package/node-fetch) was used as middleware for fetches done from the back end.
 
-- [Handlebars.js]("https://handlebarsjs.com/") was used for templating, making it easy to insert data into pages to load users' personal lists and do neat stuff like greet them by name on the dashboard. Partials were a great tool for filling in lists and making a template for displaying individual movie info. 
+- [Handlebars.js](https://handlebarsjs.com/) was used for templating, making it easy to insert data into pages to load users' personal lists and do neat stuff like greet them by name on the dashboard. Partials were a great tool for filling in lists and making a template for displaying individual movie info. 
 
 ## Future Development:
 - Add ability to review movies
@@ -35,8 +35,11 @@ The goal was to build an app that would allow users to keep track of movies. Mov
 - Auto seeding of large third party lists like AFI top 100
 
 ## Screenshots:
-(screenshots go here)
-landing page background photo by [Timothy Eberly]("https://unsplash.com/@timothyeberly?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText") on [Unsplash]("https://unsplash.com/s/photos/film-reel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText")
+![screenshot of landing page](./assets/moviescreenshot1.png)  
+![screenshot of dashboard](./assets/moviescreenshot3.png)  
+![screenshot of movie modal](./assets/moviescreenshot2.png)
+landing page background photo by [Timothy Eberly](https://unsplash.com/@timothyeberly?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/film-reel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Developer Credits:
-Sean - mostly worked on models, seeds and api routes.
+Sean - mostly worked on models, seeds and api routes.  
+Artemis - Handlebars templates  
