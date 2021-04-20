@@ -40,3 +40,4 @@ landing page background photo by [Timothy Eberly]("https://unsplash.com/@timothy
 
 ## Developer Credits:
 Sean - mostly worked on models, seeds and api routes.
+Dawan - Server, DB, API Route Functionality.
